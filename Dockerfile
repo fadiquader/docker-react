@@ -2,7 +2,7 @@ FROM node:alpine AS builder
 
 WORKDIR '/app'
 
-RUN npm instaal -g yarn
+RUN npm install -g yarn
 
 COPY package.json .
 RUN yarn install

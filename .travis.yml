@@ -6,3 +6,16 @@ before_install:
   - docker build -t fadiqua/docker-react -f Dockerfile.dev .
 script:
   - docker run fadiqua/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: "docker-react"
+  env: " DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-856705349318"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
